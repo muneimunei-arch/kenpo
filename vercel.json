@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "",
+  "outputDirectory": "public",
+  "redirects": [{"source":"/","destination":"/kenpo/","permanent":false}],
+  "rewrites": [{"source":"/kenpo/community.php","destination":"https://muneiserver.xsrv.jp/kenpo/community.php"}]
+}

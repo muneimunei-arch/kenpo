@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.env.*
+*.key
+*.pem
+*.sqlite
+*.sqlite-*
+*.db
+config.json
+*ログイン情報*
+private-backups/
+.vercel/
+*.zip
+*.tar.gz
