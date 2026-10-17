@@ -15,7 +15,7 @@ printf '初回は接続先の確認、鍵に設定されている場合はパス
 ssh "${SSH_OPTS[@]}" "$HOST" 'test -d "$HOME/muneiserver.xsrv.jp/public_html/kenpo" && command -v unzip >/dev/null && command -v curl >/dev/null'
 # Refuse to replace an independently changed comment endpoint.
 REMOTE_HASH=$(ssh "${SSH_OPTS[@]}" "$HOST" 'sha256sum "$HOME/muneiserver.xsrv.jp/public_html/kenpo/community.php"' | cut -d ' ' -f1)
-if [[ "$REMOTE_HASH" != 'c1dcd8cdb8490d7b338f88472a4d1ecc74bf83ef8de087f36221134d7df53d9d' && "$REMOTE_HASH" != 'd2061a2730336bbf4e6fe13aedf04edef72307c0aa51e69012675533a27bf04c' ]]; then
+if [[ "$REMOTE_HASH" != 'c1dcd8cdb8490d7b338f88472a4d1ecc74bf83ef8de087f36221134d7df53d9d' && "$REMOTE_HASH" != 'd2061a2730336bbf4e6fe13aedf04edef72307c0aa51e69012675533a27bf04c' && "$REMOTE_HASH" != '8f6e83a10f8db18e6ce738385b00d6d37895df24baad3ffb05fe20e589fe3909' ]]; then
  printf 'コメント機能が別に更新されています。確認のため公開を停止します。\n'
  exit 1
 fi
