@@ -2,7 +2,7 @@
 set -euo pipefail
 BASE='/Users/muneimac/Documents/Codex/2026-10-03/macos-codex-ui-https-learn-chatgpt'
 KEY='/Users/muneimac/Desktop/muneimunei/muneiserver.key'
-ARCHIVE="$BASE/outputs/constitution-site/kenpo-release-preamble.zip"
+ARCHIVE="$BASE/outputs/constitution-site/kenpo-release-public-comments.zip"
 HOST='muneiserver@sv17240.xserver.jp'
 STAMP=$(date +%Y%m%d-%H%M%S)
 REMOTE_ARCHIVE="kenpo-release-$STAMP.zip"
@@ -10,12 +10,12 @@ SSH_OPTS=(-i "$KEY" -p 10022 -o ConnectTimeout=20 -o IdentitiesOnly=yes)
 SCP_OPTS=(-i "$KEY" -P 10022 -o ConnectTimeout=20 -o IdentitiesOnly=yes)
 trap 'printf "\n処理が止まりました。上に表示されたメッセージをご確認ください。\n"; true' ERR
 [[ -f "$KEY" && -f "$ARCHIVE" ]]
-printf '憲法前文の特別ページと動画を公開します。接続キーは送信しません。\n'
+printf '管理者欄を削除し、Xサーバー版とVercel版で共通のコメント機能を公開します。接続キーは送信しません。\n'
 printf '初回は接続先の確認、鍵に設定されている場合はパスフレーズの入力が必要です。\n'
 ssh "${SSH_OPTS[@]}" "$HOST" 'test -d "$HOME/muneiserver.xsrv.jp/public_html/kenpo" && command -v unzip >/dev/null && command -v curl >/dev/null'
 # Refuse to replace an independently changed comment endpoint.
 REMOTE_HASH=$(ssh "${SSH_OPTS[@]}" "$HOST" 'sha256sum "$HOME/muneiserver.xsrv.jp/public_html/kenpo/community.php"' | cut -d ' ' -f1)
-if [[ "$REMOTE_HASH" != 'c1dcd8cdb8490d7b338f88472a4d1ecc74bf83ef8de087f36221134d7df53d9d' && "$REMOTE_HASH" != 'd2061a2730336bbf4e6fe13aedf04edef72307c0aa51e69012675533a27bf04c' && "$REMOTE_HASH" != '8f6e83a10f8db18e6ce738385b00d6d37895df24baad3ffb05fe20e589fe3909' && "$REMOTE_HASH" != '03932b0ab032611935bbd70cca00338d261c41701cb6fcedb112821eceaad976' && "$REMOTE_HASH" != '96b1d76e6b423cc256a0bbc93b73c0a6c9803f5422d2a24230ce11b11f4f12a0' && "$REMOTE_HASH" != '0852acafdb792a85ff7ddae8a526df6031258aaffd671e46f79dc572181b2bfb' && "$REMOTE_HASH" != 'a825fef9aa6059bc7c7ec5e514f874e06cb36e2f7dba3961acd4c36526837623' && "$REMOTE_HASH" != '7ccd535c4ede8d4f6c55c13be585953efaff853b51ff547763ba636852fb3f78' && "$REMOTE_HASH" != 'e7c9a24ec15ca691a9930344f141ac2d14f24362f5df52b2dcc947573130f445' && "$REMOTE_HASH" != 'a068dd1003f0fb9ed9ecc8e1d8053e3624e5d5cc07f91678060bdf3bbe65ccd4' && "$REMOTE_HASH" != '67537a5e3364ffdc2e7ba96f8a2d25562f833655e5bd4939dcb6ef7dfe57c19f' && "$REMOTE_HASH" != 'aaaabb5cc823a94e38dbc39f447c74a93e46e1ac5fbe57abbb99da814ee79529' && "$REMOTE_HASH" != 'b82eedbf4dc59a952459e738b4116db78841eb63bf84a0b1295c17b337b36371' ]]; then
+if [[ "$REMOTE_HASH" != 'c1dcd8cdb8490d7b338f88472a4d1ecc74bf83ef8de087f36221134d7df53d9d' && "$REMOTE_HASH" != 'd2061a2730336bbf4e6fe13aedf04edef72307c0aa51e69012675533a27bf04c' && "$REMOTE_HASH" != '8f6e83a10f8db18e6ce738385b00d6d37895df24baad3ffb05fe20e589fe3909' && "$REMOTE_HASH" != '03932b0ab032611935bbd70cca00338d261c41701cb6fcedb112821eceaad976' && "$REMOTE_HASH" != '96b1d76e6b423cc256a0bbc93b73c0a6c9803f5422d2a24230ce11b11f4f12a0' && "$REMOTE_HASH" != '0852acafdb792a85ff7ddae8a526df6031258aaffd671e46f79dc572181b2bfb' && "$REMOTE_HASH" != 'a825fef9aa6059bc7c7ec5e514f874e06cb36e2f7dba3961acd4c36526837623' && "$REMOTE_HASH" != '7ccd535c4ede8d4f6c55c13be585953efaff853b51ff547763ba636852fb3f78' && "$REMOTE_HASH" != 'e7c9a24ec15ca691a9930344f141ac2d14f24362f5df52b2dcc947573130f445' && "$REMOTE_HASH" != 'a068dd1003f0fb9ed9ecc8e1d8053e3624e5d5cc07f91678060bdf3bbe65ccd4' && "$REMOTE_HASH" != '67537a5e3364ffdc2e7ba96f8a2d25562f833655e5bd4939dcb6ef7dfe57c19f' && "$REMOTE_HASH" != 'aaaabb5cc823a94e38dbc39f447c74a93e46e1ac5fbe57abbb99da814ee79529' && "$REMOTE_HASH" != 'b82eedbf4dc59a952459e738b4116db78841eb63bf84a0b1295c17b337b36371' && "$REMOTE_HASH" != 'ada6d20eeeaf6e1cd8982b6e33bda38e6c73aed4543516d09cef9923702ef5e7' ]]; then
  printf 'コメント機能が別に更新されています。確認のため公開を停止します。\n'
  exit 1
 fi
