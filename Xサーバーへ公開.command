@@ -10,7 +10,7 @@ SSH_OPTS=(-i "$KEY" -p 10022 -o ConnectTimeout=20 -o IdentitiesOnly=yes)
 SCP_OPTS=(-i "$KEY" -P 10022 -o ConnectTimeout=20 -o IdentitiesOnly=yes)
 trap 'printf "\n処理が止まりました。上に表示されたメッセージをご確認ください。\n"; true' ERR
 [[ -f "$KEY" && -f "$ARCHIVE" ]]
-printf '全ページの上部から条文リンクを外し、第19条のヘッダーを整理して公開します。接続キーは送信しません。\n'
+printf '「旅のなかま」と「この旅について」を第19条から前文へ移して公開します。接続キーは送信しません。\n'
 printf '初回は接続先の確認、鍵に設定されている場合はパスフレーズの入力が必要です。\n'
 ssh "${SSH_OPTS[@]}" "$HOST" 'test -d "$HOME/muneiserver.xsrv.jp/public_html/kenpo" && command -v unzip >/dev/null && command -v curl >/dev/null'
 # Refuse to replace an independently changed comment endpoint.
